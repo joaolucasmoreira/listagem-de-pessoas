@@ -1,11 +1,4 @@
-const TablePessoa = () => {
-  const pessoas = [
-    { nome: "Henry", sobrenome: "Oliver", idade: 17 },
-    { nome: "Cauã Biribinha", sobrenome: "Booom", idade: 17 },
-    { nome: "Natan", sobrenome: "Valenet", idade: 21 },
-    { nome: "Leo X1", sobrenome: "Paum", idade: 18 },
-  ];
-
+const TablePessoa = ({ pessoas }) => {
   return (
     <div className="m-5">
       <table className="table">
@@ -17,11 +10,12 @@ const TablePessoa = () => {
             <th scope="col">Idade</th>
           </tr>
         </thead>
-
         <tbody>
           {pessoas.map((pessoa, index) => (
-            <tr>
-              <th id={index} scope="row">{index}</th>
+            <tr key={index}  >
+              <th scope="row">
+                {index+1}
+              </th>
               <td>{pessoa.nome}</td>
               <td>{pessoa.sobrenome}</td>
               <td>{pessoa.idade}</td>
@@ -34,3 +28,4 @@ const TablePessoa = () => {
 };
 
 export default TablePessoa;
+

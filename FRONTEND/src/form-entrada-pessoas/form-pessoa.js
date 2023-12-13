@@ -21,18 +21,21 @@ const FormPessoa = ({ adicionarPessoa }) => {
       <TextField
         id="inNome"
         label="Nome"
+        name="nome"
         variant="outlined"
         onChange={(e) => setNome(e.target.value)}
       />
       <TextField
         id="inSobrenome"
         label="Sobrenome"
+        name="sobrenome"
         variant="outlined"
         onChange={(e) => setSobrenome(e.target.value)}
       />
       <TextField
         id="inIdade"
         label="Idade"
+        name="idade"
         variant="outlined"
         onChange={(e) => setIdade(e.target.value)}
       />
