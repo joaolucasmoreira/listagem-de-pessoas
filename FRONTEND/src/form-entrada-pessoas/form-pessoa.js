@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 
 import "./form-pessoa.style.css";
 
-const FormPessoa = ({ adicionarPessoa }) => {
-  const [nome, setNome] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-  const [idade, setIdade] = useState(0);
+const FormPessoa = ({ selected, handleSubmit }) => {
+  const [pessoa, setPessoa] = useState({});
 
-  const handleInputs = (e) => {
-    const novaPessoa = { nome: nome, sobrenome: sobrenome, idade: idade };
-    // console.log(novaPessoa);
-    adicionarPessoa(novaPessoa);
+  useEffect(() => {
+    setPessoa(selected);
+  }, [selected]);
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(pessoa);
+    handleSubmit(pessoa);
   };
 
   return (
@@ -21,26 +23,32 @@ const FormPessoa = ({ adicionarPessoa }) => {
       <TextField
         id="inNome"
         label="Nome"
-        name="nome"
         variant="outlined"
-        onChange={(e) => setNome(e.target.value)}
+        defaultValue={selected.nome}
+        onChange={(e) => {
+          setPessoa({ ...pessoa, nome: e.target.value });
+        }}
       />
       <TextField
         id="inSobrenome"
         label="Sobrenome"
-        name="sobrenome"
         variant="outlined"
-        onChange={(e) => setSobrenome(e.target.value)}
+        defaultValue={selected.sobrenome}
+        onChange={(e) => {
+          setPessoa({ ...pessoa, sobrenome: e.target.value });
+        }}
       />
       <TextField
         id="inIdade"
         label="Idade"
-        name="idade"
         variant="outlined"
-        onChange={(e) => setIdade(e.target.value)}
+        defaultValue={selected.idade}
+        onChange={(e) => {
+          setPessoa({ ...pessoa, idade: e.target.value });
+        }}
       />
 
-      <Button type="submit" variant="outlined" onClick={handleInputs}>
+      <Button type="submit" variant="outlined" onClick={submit}>
         Botão
       </Button>
     </div>

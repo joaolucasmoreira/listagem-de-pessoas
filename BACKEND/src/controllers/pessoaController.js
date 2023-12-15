@@ -10,7 +10,7 @@ exports.listarPessoas = async (req, res) => {
 };
 
 exports.inserirPessoa = async (req, res) => {
-  try {
+  try {    
     const { nome, sobrenome, idade } = req.body;
     const novaPessoa = await Pessoa.create({ nome, sobrenome, idade });
     res.status(201).json(novaPessoa);

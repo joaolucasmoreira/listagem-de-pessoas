@@ -12,6 +12,29 @@ const getPessoas = async () => {
   } catch (error) {
     throw new Error("Não foi possível carregar os dados");
   }
+  
 };
 
-export default getPessoas;
+const setPessoa = async (novaPessoa) => {
+  try {
+    const res = await fetch(`${URL_API}/pessoa/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(novaPessoa),
+    });
+
+    if (!res.ok) {
+        throw new Error('Houve erro na adição do usuário')
+    }
+
+    const result = await res.json();
+    return result;
+
+  } catch (error) {
+    throw new Error(error.message)
+  }
+};
+
+export {getPessoas, setPessoa};
