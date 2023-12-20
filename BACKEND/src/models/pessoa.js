@@ -1,15 +1,3 @@
-// const { Sequelize, DataTypes } = require("sequelize");
-// const mySQL = new Sequelize(
-//   process.env.DATABASE,
-//   process.env.DB_USER,
-//   process.env.DB_PASSWORD,
-//   {
-//     host: process.env.DB_HOST,
-//     dialect: "mysql",
-//     port: process.env.DB_PORT,
-//   }
-// );
-
 const mySQLcon = require("../../connection");
 
 const Pessoa = mySQLcon.config.define(
@@ -23,17 +11,18 @@ const Pessoa = mySQLcon.config.define(
     },
     nome: {
       type: mySQLcon.dataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     sobrenome: {
       type: mySQLcon.dataTypes.STRING,
     },
     idade: {
       type: mySQLcon.dataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
   },
   {
+    freezeTableName: true,
     timestamps: false,
     tableName: "pessoa",
   }
