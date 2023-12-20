@@ -18,7 +18,7 @@ const pessoaService = {
       }
     );
   },
-  delete: async (id) => {
+  deletePessoa: async (id) => {
     return await Pessoa.destroy({
       where: { id: id },
     });

@@ -1,9 +1,9 @@
 const pessoaService = require("../services/pessoa.services");
 
 const controllerPessoa = {
-  listarPessoas: (req, res) => {
+  listarPessoas: async (req, res) => {
     try {
-      const pessoas = pessoaService.getPessoas;
+      const pessoas =  await pessoaService.getPessoas();
       res.json(pessoas);
     } catch (error) {
       console.log(error);
@@ -12,7 +12,7 @@ const controllerPessoa = {
   },
   buscarPessoaById: async (req, res) => {
     try {
-      const pessoa = await pessoaService.findById(req.params.id);
+      const pessoa = await pessoaService.getById(req.params.id);
       if (!pessoa) {
         return res
           .status(404)
@@ -27,7 +27,7 @@ const controllerPessoa = {
   },
   inserirPessoa: async (req, res) => {
     try {
-      const novaPessoa = await pessoaService.createPessoa(req.body);
+      const novaPessoa = await pessoaService.insertPessoa(req.body);
       res.status(201).json(novaPessoa);
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ const controllerPessoa = {
   },
   atualizarPessoa:async (req, res) => {
     try {
-      const pessoaExistente = await pessoaService.findById(req.params.id);
+      const pessoaExistente = await pessoaService.getById(req.params.id);
       console.log(pessoaExistente);
       if (!pessoaExistente) {
         return res
@@ -53,7 +53,7 @@ const controllerPessoa = {
   },
   deletarPessoa: async (req, res) => {
     try {
-      const pessoaExistente = await pessoaService.findById(req.params.id);
+      const pessoaExistente = await pessoaService.getById(req.params.id);
       if (!pessoaExistente) {
         return res
           .status(404)

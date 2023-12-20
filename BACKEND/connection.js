@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 const mySQLcon = {
   config: new Sequelize(
-    process.env.DATABASE,
+    process.env.DB_NAME,
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
