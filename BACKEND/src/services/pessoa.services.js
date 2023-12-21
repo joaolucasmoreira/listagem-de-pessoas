@@ -8,7 +8,8 @@ const pessoaService = {
     return await Pessoa.findByPk(id);
   },
   insertPessoa: async ({ nome, sobrenome, idade }) => {
-    return await Pessoa.create({ nome, sobrenome, idade });
+     const novaPessoa = await Pessoa.create({ nome, sobrenome, idade });
+     return novaPessoa;
   },
   updatePessoa: async ({ id, nome, sobrenome, idade }) => {
     return await Pessoa.update(
